@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COUNTER</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="background">
+    <div id="header">
+        <h4 class="awal_besar" id="sambutan">Selamat Datang ya </h4>
+        <h5>Silahkan Bermain</h5>
+    </div>
+    <div id="isi">
+        <P>Silahkan tentukan kelipatannya diikuti dengan
+            <br> menekan tombol "OK".</P>
+        <hr>
+        <p>Kelipatan saat ini adalah : </p>
+        <h3 id="kelipatanSaatIni"></h3>
+        <br>
+        <h4>COUNTER</h4>
+        <h1 id="hasil"></h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                    <h4 class="d-inline">KELIPATAN</h4>
+                    <br>
+                    <input type="number" id="kelipatan" class="textTengah" value="100">
+                    <button id="buttonOk" type="button" class="btn btn-success btn-sm">OK</button>
+                </div>
+                <div class="col-sm-5">
+                    <h4 class="d-inline">RESET</h4>
+                    <br>
+                    <button id="Reset1" type="button" style="width: 200px" class="btn btn-danger btn-sm" onclick="doReset()">Reset
+                        All</button>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <br>
+        <button id="minus" type="button" style="width: 20%" class="btn btn btn-info btn-sm margin2">-</button>
+        <button id="plus" type="button" style="width: 20%" onclick="doPlus()" class="btn btn btn-info btn-sm margin2">+</button>
+    </div>
+    <hr>
+    <div id="footer">
+        <h6>Tugas #7 Create by Erik</h6>
+    </div>
+    <audio id="audio1" src="sound/coinup.wav"></audio>
+    <audio id="audio2" src="sound/coindown.wav"></audio>
+    <audio id="audio3" src="sound/powerup.wav"></audio>
+    <audio id="audio4" src="sound/reset.wav"></audio>
+    <audio autoplay id="audio5">
+        <source src="sound/introducing.wav" type="audio/wav"></audio>
+            
+    <script>
+        // selamat datang
+        var nama;
+        nama = prompt('Siapa Nama Mu ?');
+        var namaPengunjung = document.getElementById('sambutan');
+        namaPengunjung.innerHTML = 'Selamat Datang ' + nama;
+
+        // var setting
+        var hasil = document.getElementById('hasil');
+        var tombolMinus = document.getElementById('minus');
+        var tombolReset = document.getElementById('reset1');
+        var x = 0;
+        var kelipatan;
+        var inputKelipatan = document.getElementById('kelipatan');
+        var kelipatanSaatIni = document.getElementById('kelipatanSaatIni');
+        var tombolOk = document.getElementById('buttonOk');
+        console.log('Counter awal adalah = ' + x + " " + typeof x);
+        hasil.innerHTML = x;
+
+        // fungsi tombol minus
+        tombolMinus.addEventListener('click', function () {
+            // kelipatan = inputKelipatan.value;
+            kelipatan = Number/*(Number) merubah dari string ke number*/(kelipatan);
+            console.log('nilai kelipatan adalah = ' + kelipatan + " " + typeof kelipatan);
+            x = x - kelipatan;
+            console.log('nilai Counter = ' + x);
+            hasil.innerHTML = x;
+            playDown();
+        })
+
+        // fungsi tombol plus
+        function doPlus() {
+            // kelipatan = inputKelipatan.value;
+            kelipatan = Number(kelipatan);
+            console.log('nilai kelipatan adalah = ' + kelipatan + " " + typeof kelipatan);
+            x = x + kelipatan;
+            console.log('nilai Counter = ' + x);
+            hasil.innerHTML = x;
+            playUp();
+        }
+
+        //fungsi reset
+        function doReset() {
+            x = 0;
+            kelipatan = 1;
+            inputKelipatan.value = 1;
+            hasil.innerHTML = x;
+            tampilkanKelipatanSaatIni();
+            playReset();
+            console.log('nilai x = ' + x);
+            console.log('nilai kelipatan = ' + kelipatan);
+        }
+
+        //fungsi Text Kelipatan saat ini
+        tampilkanKelipatanSaatIni();
+        function tampilkanKelipatanSaatIni() {
+            kelipatan = inputKelipatan.value;
+            kelipatanSaatIni.innerHTML = kelipatan;
+        }
+
+        //fungsi tombol ok
+        tombolOk.addEventListener('click', function () {
+            // kelipatan = inputKelipatan.value;
+            tampilkanKelipatanSaatIni();
+            playChange();
+        })
+
+        //play coinUp
+        var audio1 = document.getElementById("audio1");
+        function playUp() {
+            audio1.play();
+        }
+
+        //playDown
+        var audio2 = document.getElementById("audio2");
+        function playDown() {
+            audio2.play();
+        }
+
+        //playChange
+        var audio3 = document.getElementById("audio3");
+        function playChange() {
+            audio3.play();
+        }
+
+        //resetSound
+        var audio4 = document.getElementById("audio4");
+        function playReset() {
+            audio4.play();
+        }
+
+        //intro
+        // var audio5 = document.getElementById("audio5");
+        // playIntro();
+        // function playIntro() {
+        //     audio5.play() ;
+
+        // }
+
+
+
+    </script>
+
+</body>
+
+</html>
